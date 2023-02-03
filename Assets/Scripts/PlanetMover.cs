@@ -15,6 +15,12 @@ public class PlanetMover : MonoBehaviour
     private float speed;
 
     [SerializeField]
+    private float rotationSpeed;
+
+    [SerializeField]
+    private float planarAngle;
+
+    [SerializeField]
     private float transformScaler;
 
     // Start is called before the first frame update
@@ -29,9 +35,10 @@ public class PlanetMover : MonoBehaviour
         timeCounter += Time.deltaTime * speed;
 
         float x = Mathf.Sin(timeCounter) * width;
-        float y = 0;
+        float y = Mathf.Cos(timeCounter)*planarAngle;
         float z = Mathf.Cos(timeCounter) * height;
 
         transform.position = new Vector3(x, y, z);
+        transform.Rotate( Vector3.up * rotationSpeed * Time.deltaTime, Space.Self);
     }
 }
