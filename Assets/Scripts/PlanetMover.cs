@@ -15,6 +15,9 @@ public class PlanetMover : MonoBehaviour
     private float speed;
 
     [SerializeField]
+    private float rotationSpeed;
+
+    [SerializeField]
     private float planarAngle;
 
     [SerializeField]
@@ -36,5 +39,6 @@ public class PlanetMover : MonoBehaviour
         float z = Mathf.Cos(timeCounter) * height;
 
         transform.position = new Vector3(x, y, z);
+        transform.Rotate( Vector3.up * rotationSpeed * Time.deltaTime, Space.Self);
     }
 }
